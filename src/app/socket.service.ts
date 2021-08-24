@@ -9,7 +9,7 @@ export class SocketService {
   socket: any;
 
   constructor() {
-    this.socket = io('http://REDISPOC-762927624.us-east-1.elb.amazonaws.com', {
+    this.socket = io('https://dev.membervw.hlth360.net:11008', {
       path: '/cm/socket',
       transports: ['websocket']
     });
@@ -18,13 +18,13 @@ export class SocketService {
   setup() {
 
     //this.socket.nsp = '/';
-    //this.socket.emit('join_chat', {'userId' : '422719f2-7fe8-4352-a8d1-b076383398f1', 'userRole': 'PATIENT'});
+    //this.socket.emit('join_chat', {'userId' : 'c04a5470-017d-4ffb-9e12-1bed3058e657', 'userRole': 'PATIENT'});
 
     console.log(this.socket.id);
     console.log(this.socket.connected);
 
     setTimeout(() => {
-      this.socket.emit('patient_join', {'userId' : '422719f2-7fe8-4352-a8d1-b076383398f1'});
+      this.socket.emit('patient_join', {'userId' : 'c04a5470-017d-4ffb-9e12-1bed3058e657'});
 
       this.socket.on('patient_join_response', (msg: any) => {
         console.log(new Date()+': user join chat res: '+ JSON.stringify(msg));
@@ -32,7 +32,7 @@ export class SocketService {
     }, 5000);
 
     setTimeout(() => {
-      this.socket.emit('patient_contacts', {'userId' : '422719f2-7fe8-4352-a8d1-b076383398f1'});
+      this.socket.emit('patient_contacts', {'userId' : 'c04a5470-017d-4ffb-9e12-1bed3058e657'});
 
       this.socket.on('patient_contacts_response', (msg: any) => {
         console.log(new Date()+': user contact res: '+ JSON.stringify(msg));
@@ -41,7 +41,7 @@ export class SocketService {
     }, 10000);
 
     setTimeout(() => {
-      this.socket.emit('patient_chat_room', {'userId' : '422719f2-7fe8-4352-a8d1-b076383398f1', 'staffId': '1575e21b-4869-4647-bcf0-ce1adf274673'});
+      this.socket.emit('patient_chat_room', {'userId' : 'c04a5470-017d-4ffb-9e12-1bed3058e657', 'staffId': 'b8fdb8f5-96d1-4ebb-828b-1761705cef80'});
 
       this.socket.on('patient_chat_room_response', (msg: any) => {
         console.log(new Date()+': user chat room res: '+ JSON.stringify(msg));
@@ -50,11 +50,11 @@ export class SocketService {
 
     setInterval(() => {
       this.socket.emit('patient_send_message', {
-        "patientId" : "422719f2-7fe8-4352-a8d1-b076383398f1",
-        "staffId" : "1575e21b-4869-4647-bcf0-ce1adf274673",
-        "sender": "422719f2-7fe8-4352-a8d1-b076383398f1",
+        "patientId" : "c04a5470-017d-4ffb-9e12-1bed3058e657",
+        "staffId" : "b8fdb8f5-96d1-4ebb-828b-1761705cef80",
+        "sender": "c04a5470-017d-4ffb-9e12-1bed3058e657",
         "senderRole": "Patient",
-        "receiver": "1575e21b-4869-4647-bcf0-ce1adf274673",
+        "receiver": "b8fdb8f5-96d1-4ebb-828b-1761705cef80",
         "receiverRole": "Case-Manager",
         "text": new Date()
       });
